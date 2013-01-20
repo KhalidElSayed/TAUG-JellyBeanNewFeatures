@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="long_list">
+        <item>This </item>
+        <item>is </item>
+        <item>a </item>
+        <item>very </item>
+        <item>long </item>
+        <item>list </item>
+        <item>with </item>
+        <item>many </item>
+        <item>elements </item>
+        <item>to </item>
+        <item>demonstrate </item>
+        <item>the </item>
+        <item>power </item>
+        <item>of </item>
+        <item>Android </item>
+        <item>widgets! </item>
+    </string-array>
+</resources>

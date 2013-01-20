@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">JellyBeanNewFeatures</string>
+    <string name="title_section3">DayDream</string>
+    <string name="title_section2">Rich notifications</string>
+    <string name="title_section1">Lockscreen widgets</string>
+    <string name="expandable_widget">TAUG - Expandable widget</string>
+    <string name="cut_widget">TAUG - Cut widget</string>
+    <string name="two_layouts_widget">TAUG - Two layouts widget</string>
+    <string name="header">Header</string>
+    <string name="footer">Footer</string>
+    <string name="title">Title</string>
+    <string name="description">A little longer description as the widget has some more space</string>
+    <string name="widgets_fragment_text">The widgets should be accessible in your lockscreen.\nIf you don\'t have JB 4.2 you could add it to your home.\n\nAvailable widgets: \n ▶TAUG - Expandable widget\n ▶TAUG - Cut widget\n ▶TAUG - Two layouts widget</string>
+    <string name="menu_about">About</string>
+    <string name="main_activity_title">TAUG - JB New features</string>
+    <string name="about_main">This application has been developped by Nicolas POMEPUY for the Toulouse Android User Group (TAUG).</string>
+    <string name="followme">Follow me</string>
+
+</resources>

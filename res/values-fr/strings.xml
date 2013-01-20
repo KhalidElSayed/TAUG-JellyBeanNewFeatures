@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">JellyBeanNewFeatures</string>
+    <string name="title_section3">Ecran de veille</string>
+    <string name="title_section2">Notifications</string>
+    <string name="title_section1">Widgets</string>
+    <string name="expandable_widget">TAUG - Expandable widget</string>
+    <string name="cut_widget">TAUG - Cut widget</string>
+    <string name="two_layouts_widget">TAUG - Two layouts widget</string>
+    <string name="header">En-tête</string>
+    <string name="footer">Pied de page</string>
+    <string name="title">Titre</string>
+    <string name="description">Une description un peu plus longue car on a de la place.</string>
+    <string name="widgets_fragment_text">Les widgets devraient être accessibles dans votre écran de déverrouilage.\nSi vous ne disposez pas de JellyBean 4.2, vous pouvez les utiliser sur votre écran d\'accueil.\n\nWidgets disponibles : \n ▶TAUG - Expandable widget\n ▶TAUG - Cut widget\n ▶TAUG - Two layouts widget</string>
+    <string name="menu_about">A propos</string>
+    <string name="main_activity_title">TAUG - Nouveautés de JB</string>
+    <string name="followme">Suivez moi</string>
+
+</resources>

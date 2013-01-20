@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- #################### -->
+	<!-- Dimension for phones -->
+	<!-- #################### -->
+	<dimen name="width4">260dp</dimen>
+	<dimen name="height4">260dp</dimen>
+</resources>

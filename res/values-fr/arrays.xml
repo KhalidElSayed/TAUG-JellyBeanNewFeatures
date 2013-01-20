@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="long_list">
+        <item>Ceci </item>
+        <item>est </item>
+        <item>une </item>
+        <item>très </item>
+        <item>longue </item>
+        <item>liste </item>
+        <item>avec </item>
+        <item>beaucoup </item>
+        <item>d\'éléments </item>
+        <item>pour </item>
+        <item>montrer </item>
+        <item>la </item>
+        <item>puissance </item>
+        <item>des </item>
+        <item>widgets </item>
+        <item>d\'Android! </item>
+    </string-array>
+</resources>

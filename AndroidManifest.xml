@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="fr.taug.jellybeannewfeatures"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="16" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="fr.taug.jellybeannewfeatures.ui.activities.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="fr.taug.jellybeannewfeatures.ui.activities.AboutActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="fr.taug.jellybeannewfeatures.ABOUTACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Widgets declaration -->
+        <receiver
+            android:name="fr.taug.jellybeannewfeatures.ui.widgets.ExpandableWidget"
+            android:label="@string/expandable_widget" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/expandable_widget" />
+        </receiver>
+        <receiver
+            android:name="fr.taug.jellybeannewfeatures.ui.widgets.CutWidget"
+            android:label="@string/cut_widget" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/cut_widget" />
+        </receiver>
+        <receiver
+            android:name="fr.taug.jellybeannewfeatures.ui.widgets.TwoLayoutsWidget"
+            android:label="@string/two_layouts_widget" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/two_layouts_widget" />
+        </receiver>
+
+        <service
+            android:name="fr.taug.jellybeannewfeatures.ui.widgets.ListWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+    </application>
+
+</manifest>
