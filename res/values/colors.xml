@@ -18,4 +18,5 @@
 
 <resources>
     <color name="pressed_jbnf">#CC33B5E5</color>
+    <color name="blue">#32b6e5</color>
 </resources>

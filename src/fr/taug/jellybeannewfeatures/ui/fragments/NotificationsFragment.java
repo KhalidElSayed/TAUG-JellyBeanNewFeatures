@@ -24,7 +24,25 @@ public class NotificationsFragment extends Fragment {
 
 			@Override
 			public void onClick(View arg0) {
-				Notifications.generateSimpleNotification(getActivity());
+				Notifications.generateSimpleNotification(getActivity(), false);
+
+			}
+		});
+		Button secondStackNotificationButton = (Button) view.findViewById(R.id.simple_notification_second_stack);
+		secondStackNotificationButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				Notifications.generateSimpleNotification(getActivity(), true);
+
+			}
+		});
+		Button inbowNotificationButton = (Button) view.findViewById(R.id.inbox_notification);
+		inbowNotificationButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				Notifications.generateInboxNotification(getActivity());
 
 			}
 		});

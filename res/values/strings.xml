@@ -17,5 +17,8 @@
     <string name="main_activity_title">TAUG - JB New features</string>
     <string name="about_main">This application has been developed by Nicolas POMEPUY for the Toulouse Android User Group (TAUG).</string>
     <string name="followme">Follow me</string>
+    <string name="simple">Simple</string>
+    <string name="second_stack">Second stack</string>
+    <string name="inbox">Inbox</string>
 
 </resources>

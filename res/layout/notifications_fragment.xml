@@ -8,26 +8,50 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-        <Button 
-            android:layout_width="wrap_content"
+        <TextView
+            style="@style/Title"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/simple_notification"
-            android:text="Simple notification"/>
-<!--         <Button  -->
-<!--             android:layout_width="wrap_content" -->
-<!--             android:layout_height="wrap_content" -->
-<!--             android:id="@+id/simple_notification" -->
-<!--             android:text="Simple notification"/> -->
-<!--         <Button  -->
-<!--             android:layout_width="wrap_content" -->
-<!--             android:layout_height="wrap_content" -->
-<!--             android:id="@+id/simple_notification" -->
-<!--             android:text="Simple notification"/> -->
-<!--         <Button  -->
-<!--             android:layout_width="wrap_content" -->
-<!--             android:layout_height="wrap_content" -->
-<!--             android:id="@+id/simple_notification" -->
-<!--             android:text="Simple notification"/> -->
+            android:text="Simple notifications" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp" >
+
+            <Button
+                android:id="@+id/simple_notification"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/simple" />
+
+            <Button
+                android:id="@+id/simple_notification_second_stack"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/second_stack" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="New notifications" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" 
+            android:layout_margin="5dp">
+
+            <Button
+                android:id="@+id/inbox_notification"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/inbox" />
+        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>
