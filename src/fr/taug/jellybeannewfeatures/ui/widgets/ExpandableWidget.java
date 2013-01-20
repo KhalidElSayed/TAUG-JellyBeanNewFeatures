@@ -16,7 +16,7 @@ public class ExpandableWidget extends TaugAppWidgetProvider {
 		Intent intent = new Intent(context, ListWidgetService.class);
 		intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
 		intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
-		rview.setRemoteAdapter(appWidgetId, R.id.list, intent);
+		rview.setRemoteAdapter(R.id.list, intent);
 
 		return rview;
 	}

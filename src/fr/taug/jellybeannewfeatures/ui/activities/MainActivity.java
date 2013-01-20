@@ -2,23 +2,24 @@ package fr.taug.jellybeannewfeatures.ui.activities;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import android.view.View.OnClickListener;
+import android.widget.ImageView;
 import fr.taug.jellybeannewfeatures.R;
 import fr.taug.jellybeannewfeatures.ui.fragments.DayDreamFragment;
 import fr.taug.jellybeannewfeatures.ui.fragments.NotificationsFragment;
 import fr.taug.jellybeannewfeatures.ui.fragments.WidgetsFragment;
+import fr.taug.jellybeannewfeatures.ui.notifications.Notifications;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
 
@@ -73,6 +74,59 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			// this tab is selected.
 			actionBar.addTab(actionBar.newTab().setText(mSectionsPagerAdapter.getPageTitle(i)).setTabListener(this));
 		}
+
+		ImageView taugGPlus = (ImageView) findViewById(R.id.taug_gplus);
+		ImageView taugTwitter = (ImageView) findViewById(R.id.taug_twitter);
+		ImageView taugFacebook = (ImageView) findViewById(R.id.taug_facebook);
+
+		taugGPlus.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri
+						.parse("https://plus.google.com/117732835400777918591"));
+				startActivity(browserIntent);
+
+			}
+		});
+		taugTwitter.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/ToulouseAUG"));
+				startActivity(browserIntent);
+
+			}
+		});
+		taugFacebook.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri
+						.parse("https://www.facebook.com/ToulouseAndroidUserGroup"));
+				startActivity(browserIntent);
+
+			}
+		});
+
+		chooseTabFromIntent();
+	}
+
+	/**
+	 * If an intent has been sent, getting the right tab to go
+	 */
+	private void chooseTabFromIntent() {
+		Intent i = getIntent();
+		if (i != null) {
+			Bundle extras = i.getExtras();
+			if (extras != null) {
+				int tabToGo = extras.getInt(Notifications.TAB);
+				if (tabToGo < mViewPager.getAdapter().getCount() && tabToGo > -1) {
+					mViewPager.setCurrentItem(tabToGo);
+				}
+			}
+		}
+
 	}
 
 	@Override
@@ -133,9 +187,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 				fragment = new WidgetsFragment();
 				break;
 			}
-			Bundle args = new Bundle();
-			args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
-			fragment.setArguments(args);
 			return fragment;
 		}
 
@@ -156,31 +207,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 				return getString(R.string.title_section3).toUpperCase();
 			}
 			return null;
-		}
-	}
-
-	/**
-	 * A dummy fragment representing a section of the app, but that simply
-	 * displays dummy text.
-	 */
-	public static class DummySectionFragment extends Fragment {
-		/**
-		 * The fragment argument representing the section number for this
-		 * fragment.
-		 */
-		public static final String ARG_SECTION_NUMBER = "section_number";
-
-		public DummySectionFragment() {
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-			// Create a new TextView and set its text to the fragment's section
-			// number argument value.
-			TextView textView = new TextView(getActivity());
-			textView.setGravity(Gravity.CENTER);
-			textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
-			return textView;
 		}
 	}
 
