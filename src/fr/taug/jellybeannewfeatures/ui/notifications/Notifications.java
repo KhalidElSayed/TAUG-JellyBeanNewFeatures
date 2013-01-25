@@ -1,10 +1,15 @@
 package fr.taug.jellybeannewfeatures.ui.notifications;
 
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
+import android.widget.RemoteViews;
 import fr.taug.jellybeannewfeatures.R;
 import fr.taug.jellybeannewfeatures.ui.activities.MainActivity;
 
@@ -16,8 +21,9 @@ public class Notifications {
 
 	public static void generateSimpleNotification(Context context, boolean secondStack) {
 		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context).setSmallIcon(R.drawable.gdg)
-				.setContentTitle("My notification").setContentText("Hello World!")
-				.setContentIntent(getPendingIntent(context));
+				.setContentTitle(context.getString(R.string.simple_notification))
+				.setContentText(context.getString(R.string.simple_notification_description))
+				.setTicker(context.getString(R.string.simple_notification)).setContentIntent(getPendingIntent(context));
 
 		NotificationManager mNotificationManager = (NotificationManager) context
 				.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -30,27 +36,74 @@ public class Notifications {
 		}
 	}
 
-	private static PendingIntent getPendingIntent(Context context) {
-		Intent i = new Intent(context, MainActivity.class);
-		i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		i.putExtra(TAB, 1);
-		return PendingIntent.getActivity(context, 0, i, PendingIntent.FLAG_UPDATE_CURRENT);
-	}
-
 	public static void generateInboxNotification(Context context) {
 		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context).setSmallIcon(R.drawable.gdg)
-				.setContentTitle("Event tracker").setContentText("Events received");
+				.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.gdg))
+				.setContentTitle(context.getString(R.string.inbox_notification))
+				.setContentText(context.getString(R.string.events_received))
+				.setTicker(context.getString(R.string.inbox_notification));
+
 		NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
 		String[] events = context.getResources().getStringArray(R.array.long_list);
-		inboxStyle.setBigContentTitle("Event tracker details:");
+		inboxStyle.setBigContentTitle(context.getString(R.string.event_tracker_details));
+		int nbMessages = 0;
 		for (int i = 0; i < events.length; i++) {
 
 			inboxStyle.addLine(events[i]);
+			nbMessages++;
 		}
+
+		mBuilder.setNumber(nbMessages);
+
 		mBuilder.setStyle(inboxStyle);
 		NotificationManager mNotificationManager = (NotificationManager) context
 				.getSystemService(Context.NOTIFICATION_SERVICE);
 		mNotificationManager.notify(NOTIFICATION_FIRST_STACK_ID, mBuilder.build());
+	}
+
+	public static void generateBigPictureNotification(Context context) {
+		Bitmap iconBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.user);
+		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
+				.setLargeIcon(iconBitmap)
+				.setSmallIcon(R.drawable.gdg)
+				.setContentTitle(context.getString(R.string.big_picture_notification))
+				.setContentText(context.getString(R.string.picture_received))
+				.setTicker(context.getString(R.string.big_picture_notification))
+				.addAction(R.drawable.ic_menu_share_holo_dark, context.getString(R.string.share),
+						getSharePendingIntent(context));
+
+		NotificationCompat.BigPictureStyle bigPictureStyle = new NotificationCompat.BigPictureStyle();
+		bigPictureStyle.setBigContentTitle(context.getString(R.string.picture_received));
+		bigPictureStyle.bigPicture(iconBitmap);
+
+		mBuilder.setStyle(bigPictureStyle);
+		NotificationManager mNotificationManager = (NotificationManager) context
+				.getSystemService(Context.NOTIFICATION_SERVICE);
+		mNotificationManager.notify(NOTIFICATION_FIRST_STACK_ID, mBuilder.build());
+	}
+
+	public static void generateCustomNotification(Context context) {
+
+		RemoteViews smallRView = new RemoteViews(context.getPackageName(), R.layout.first_layout_widget);
+		RemoteViews bigRView = new RemoteViews(context.getPackageName(), R.layout.second_layout_widget);
+
+		Bitmap iconBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.user);
+		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
+				.setLargeIcon(iconBitmap)
+				.setSmallIcon(R.drawable.gdg)
+				.setContent(smallRView)
+				.setContentText(context.getString(R.string.picture_received))
+				.setTicker(context.getString(R.string.big_picture_notification))
+				.addAction(R.drawable.ic_menu_share_holo_dark, context.getString(R.string.share),
+						getSharePendingIntent(context));
+
+		NotificationManager mNotificationManager = (NotificationManager) context
+				.getSystemService(Context.NOTIFICATION_SERVICE);
+
+		Notification notification = mBuilder.build();
+		notification.bigContentView = bigRView;
+
+		mNotificationManager.notify(NOTIFICATION_FIRST_STACK_ID, notification);
 	}
 
 	/**
@@ -85,5 +138,34 @@ public class Notifications {
 		NotificationManager notificationManager = (NotificationManager) context
 				.getSystemService(Context.NOTIFICATION_SERVICE);
 		notificationManager.cancel(NOTIFICATION_SECOND_STACK_ID);
+	}
+
+	/**
+	 * Generates an itent opening the application in the notification tab
+	 * 
+	 * @param context
+	 * @return
+	 */
+	private static PendingIntent getPendingIntent(Context context) {
+		Intent i = new Intent(context, MainActivity.class);
+		i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		i.putExtra(TAB, MainActivity.NOTIFICATION_TAB);
+		return PendingIntent.getActivity(context, 0, i, PendingIntent.FLAG_UPDATE_CURRENT);
+	}
+
+	/**
+	 * 
+	 * @param context
+	 * @return
+	 */
+	private static PendingIntent getSharePendingIntent(Context context) {
+		Intent i = new Intent(android.content.Intent.ACTION_SEND);
+		i.setType("image/png");
+
+		i.putExtra(android.content.Intent.EXTRA_SUBJECT, "Look at this image!");
+		i.putExtra(Intent.EXTRA_STREAM,
+				Uri.parse("android.resource://" + context.getPackageName() + "/" + R.drawable.user));
+
+		return PendingIntent.getActivity(context, 0, i, PendingIntent.FLAG_UPDATE_CURRENT);
 	}
 }

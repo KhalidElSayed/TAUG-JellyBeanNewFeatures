@@ -23,6 +23,8 @@ import fr.taug.jellybeannewfeatures.ui.notifications.Notifications;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
 
+	public static final int NOTIFICATION_TAB = 1;
+
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
 	 * fragments for each of the sections. We use a

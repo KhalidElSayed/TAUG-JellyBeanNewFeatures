@@ -20,6 +20,16 @@
     <string name="simple">Simple</string>
     <string name="second_stack">Second stack</string>
     <string name="inbox">Inbox</string>
+    <string name="big_picture">Big picture</string>
     <string name="taug">TAUG</string>
+    <string name="simple_notification">A simple notification</string>
+    <string name="simple_notification_description">This is a simple notification!</string>
+    <string name="inbox_notification">Inbox notification</string>
+    <string name="events_received">Events received</string>
+    <string name="event_tracker_details">Event tracker details:</string>
+    <string name="big_picture_notification">Big picture notification</string>
+    <string name="picture_received">You received a picture</string>
+    <string name="custom_notification">Custom notification</string>
+    <string name="share">Share</string>
 
 </resources>

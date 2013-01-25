@@ -37,12 +37,30 @@ public class NotificationsFragment extends Fragment {
 
 			}
 		});
-		Button inbowNotificationButton = (Button) view.findViewById(R.id.inbox_notification);
-		inbowNotificationButton.setOnClickListener(new OnClickListener() {
+		Button inboxNotificationButton = (Button) view.findViewById(R.id.inbox_notification);
+		inboxNotificationButton.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
 				Notifications.generateInboxNotification(getActivity());
+
+			}
+		});
+		Button bigPictureNotificationButton = (Button) view.findViewById(R.id.big_picture_notification);
+		bigPictureNotificationButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				Notifications.generateBigPictureNotification(getActivity());
+
+			}
+		});
+		Button customNotificationButton = (Button) view.findViewById(R.id.custom_notification);
+		customNotificationButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				Notifications.generateCustomNotification(getActivity());
 
 			}
 		});
