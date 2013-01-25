@@ -47,6 +47,34 @@ public class NotificationsFragment extends Fragment {
 			}
 		});
 
+		Button clearAllNotificationButton = (Button) view.findViewById(R.id.clear_all);
+		clearAllNotificationButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				Notifications.clearAllNotifications(getActivity());
+
+			}
+		});
+		Button clearFirstStackNotificationButton = (Button) view.findViewById(R.id.clear_first);
+		clearFirstStackNotificationButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				Notifications.clearFirstStackNotifications(getActivity());
+
+			}
+		});
+		Button clearSecondStackNotificationButton = (Button) view.findViewById(R.id.clear_second);
+		clearSecondStackNotificationButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				Notifications.clearSecondStackNotifications(getActivity());
+
+			}
+		});
+
 		return view;
 	}
 }

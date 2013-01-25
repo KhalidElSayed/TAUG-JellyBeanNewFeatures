@@ -7,52 +7,14 @@
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/taug_social"
+        android:layout_above="@+id/taug_social_ref"
         tools:context=".MainActivity" />
 
-    <RelativeLayout
-        android:id="@+id/taug_social"
+    <include
+        android:id="@+id/taug_social_ref"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/about_footer"
-        android:paddingBottom="5dp" >
+        layout="@layout/taug_social" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_toLeftOf="@+id/taug_social_icons"
-            android:gravity="center_vertical"
-            android:maxLines="2"
-            android:text="TAUG Social networks"
-            android:textColor="@color/blue"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:id="@+id/taug_social_icons"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="5dp"
-            android:gravity="center" >
-
-            <ImageView
-                android:id="@+id/taug_gplus"
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/about_googleplus" />
-
-            <ImageView
-                android:id="@+id/taug_twitter"
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/about_twitter" />
-
-            <ImageView
-                android:id="@+id/taug_facebook"
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/about_facebook" />
-        </LinearLayout>
-    </RelativeLayout>
 </RelativeLayout>

@@ -29,6 +29,7 @@ public class AboutActivity extends Activity {
 		ImageView taugGPlus = (ImageView) findViewById(R.id.taug_gplus);
 		ImageView taugTwitter = (ImageView) findViewById(R.id.taug_twitter);
 		ImageView taugFacebook = (ImageView) findViewById(R.id.taug_facebook);
+		ImageView taugBlog = (ImageView) findViewById(R.id.taug_blog);
 
 		ImageView npGPlus = (ImageView) findViewById(R.id.np_gplus);
 		ImageView npTwitter = (ImageView) findViewById(R.id.np_twitter);
@@ -58,6 +59,15 @@ public class AboutActivity extends Activity {
 			public void onClick(View arg0) {
 				Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri
 						.parse("https://www.facebook.com/ToulouseAndroidUserGroup"));
+				startActivity(browserIntent);
+
+			}
+		});
+		taugBlog.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://toulouseaug.blogspot.fr/"));
 				startActivity(browserIntent);
 
 			}

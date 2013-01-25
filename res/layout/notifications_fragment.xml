@@ -12,6 +12,37 @@
             style="@style/Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Clear notifications" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp" >
+
+            <Button
+                android:id="@+id/clear_all"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="All" />
+
+            <Button
+                android:id="@+id/clear_first"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="First stack" />
+            <Button
+                android:id="@+id/clear_second"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Second stack" />
+        </LinearLayout>
+        <TextView
+            style="@style/Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="Simple notifications" />
 
         <LinearLayout

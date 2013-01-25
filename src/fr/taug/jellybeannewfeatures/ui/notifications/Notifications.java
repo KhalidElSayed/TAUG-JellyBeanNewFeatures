@@ -58,10 +58,32 @@ public class Notifications {
 	 * 
 	 * @param context
 	 */
-	public static void cancelAllNotification(Context context) {
+	public static void clearAllNotifications(Context context) {
 		NotificationManager notificationManager = (NotificationManager) context
 				.getSystemService(Context.NOTIFICATION_SERVICE);
 		notificationManager.cancel(NOTIFICATION_FIRST_STACK_ID);
+		notificationManager.cancel(NOTIFICATION_SECOND_STACK_ID);
+	}
+
+	/**
+	 * Cancel first stack notifications
+	 * 
+	 * @param context
+	 */
+	public static void clearFirstStackNotifications(Context context) {
+		NotificationManager notificationManager = (NotificationManager) context
+				.getSystemService(Context.NOTIFICATION_SERVICE);
+		notificationManager.cancel(NOTIFICATION_FIRST_STACK_ID);
+	}
+
+	/**
+	 * Cancel second stack notifications
+	 * 
+	 * @param context
+	 */
+	public static void clearSecondStackNotifications(Context context) {
+		NotificationManager notificationManager = (NotificationManager) context
+				.getSystemService(Context.NOTIFICATION_SERVICE);
 		notificationManager.cancel(NOTIFICATION_SECOND_STACK_ID);
 	}
 }
