@@ -85,7 +85,6 @@ public class TweetAdapter extends ArrayAdapter<Tweet> {
 
 				@Override
 				public void onError() {
-					// TODO Auto-generated method stub
 
 				}
 			});
@@ -129,7 +128,7 @@ public class TweetAdapter extends ArrayAdapter<Tweet> {
 		for (int i = 0; i < getCount(); i++) {
 			getItem(i).setNew(false);
 		}
-
+		mListener.onMarkAllAsRead();
 	}
 
 	static class LocalHolder {
@@ -144,13 +143,28 @@ public class TweetAdapter extends ArrayAdapter<Tweet> {
 	public boolean addTweet(Tweet tweet) {
 		if (getPosition(tweet) < 0) {
 			insert(tweet, 0);
+			if (getCount() > 100) {
+				remove(getItem(100));
+			}
 			return true;
 		}
 		return false;
 	}
 
+	public int getNumberNewTweets() {
+		int nb = 0;
+		for (int i = 0; i < getCount(); i++) {
+			if (getItem(i).isNew())
+				nb++;
+		}
+		return nb;
+
+	}
+
 	public interface IOnTweetAdapterListener {
 		public abstract void onOpenLink();
+
+		public abstract void onMarkAllAsRead();
 
 	}
 }

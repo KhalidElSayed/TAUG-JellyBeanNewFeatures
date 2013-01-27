@@ -8,8 +8,11 @@ import android.content.SharedPreferences;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.service.dreams.DreamService;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -22,7 +25,7 @@ import fr.taug.jellybeannewfeatures.ui.daydream.TwitterApi.IOnGetTweetsListener;
 public class TAUGDayDream extends DreamService {
 
 	private static Handler mHandler = new Handler();
-	private static int nbNewTweets;
+	private static int mNbNewTweets;
 	private static TextView newTweetsTV;
 	private static ProgressBar progressBar;
 	private static int lastTweetId = 0;
@@ -49,18 +52,35 @@ public class TAUGDayDream extends DreamService {
 
 				@Override
 				public void run() {
-					nbNewTweets = 0;
+					int idx = 0;
+					int pos = 0;
+					if (mKeepPosition && !mFirstKeepPosition) {
+						idx = listView.getFirstVisiblePosition();
+						View vfirst = listView.getChildAt(0);
+						pos = 0;
+						if (vfirst != null)
+							pos = vfirst.getTop();
+
+					}
+					int nbNewTweets = 0;
 					lastTweetId = list.get(0).getId();
-					tweetAdapter.setAllTweetsToOld();
+					if (!mKeepUnread)
+						tweetAdapter.setAllTweetsToOld();
 					for (int i = list.size() - 1; i > -1; i--) {
 						if (tweetAdapter.addTweet(list.get(i)))
 							nbNewTweets++;
 					}
 					progressBar.setVisibility(View.INVISIBLE);
 					refreshButton.setVisibility(View.VISIBLE);
-					newTweetsTV.setText(nbNewTweets + " new tweets");
+					mNbNewTweets = tweetAdapter.getNumberNewTweets();
+					newTweetsTV.setText(mNbNewTweets + " new tweets");
 					newTweetsTV.setVisibility(View.VISIBLE);
 					tweetAdapter.notifyDataSetChanged();
+					if (mKeepPosition && !mFirstKeepPosition) {
+						// Restore the position
+						listView.setSelectionFromTop(idx + nbNewTweets, pos);
+					}
+					mFirstKeepPosition = false;
 				}
 			});
 		}
@@ -75,6 +95,10 @@ public class TAUGDayDream extends DreamService {
 		}
 	};
 	private String mTwitterSearch;
+	private int mRefreshTime;
+	private static boolean mKeepPosition;
+	private static boolean mFirstKeepPosition = true;
+	private static boolean mKeepUnread;
 
 	@Override
 	public void onAttachedToWindow() {
@@ -91,6 +115,26 @@ public class TAUGDayDream extends DreamService {
 		listView = (ListView) findViewById(R.id.tweet_list_view);
 		refreshButton = (ImageView) findViewById(R.id.refresh);
 
+		if (mKeepUnread) {
+			listView.setOnScrollListener(new OnScrollListener() {
+
+				@Override
+				public void onScrollStateChanged(AbsListView view, int scrollState) {
+					Log.i("Scroll", "State" + scrollState);
+					if (OnScrollListener.SCROLL_STATE_IDLE == scrollState) {
+						tweetAdapter.setAllTweetsToOld();
+						tweetAdapter.notifyDataSetChanged();
+					}
+
+				}
+
+				@Override
+				public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+				}
+			});
+		}
+
 		refreshButton.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -105,6 +149,13 @@ public class TAUGDayDream extends DreamService {
 			@Override
 			public void onOpenLink() {
 				finish();
+
+			}
+
+			@Override
+			public void onMarkAllAsRead() {
+				mNbNewTweets = 0;
+				newTweetsTV.setText(mNbNewTweets + " new tweets");
 
 			}
 		});
@@ -136,7 +187,7 @@ public class TAUGDayDream extends DreamService {
 
 	private void launchTimer() {
 		mRefreshHandler.removeCallbacks(mRefreshTask);
-		mRefreshHandler.postDelayed(mRefreshTask, 30000);
+		mRefreshHandler.postDelayed(mRefreshTask, mRefreshTime * 1000);
 
 	}
 
@@ -145,7 +196,9 @@ public class TAUGDayDream extends DreamService {
 
 		mTwitterSearch = mySharedPreferences.getString("daydream_twitter_search", "#taug");
 
-		String my_edittext_preference = mySharedPreferences.getString("edittext_preference", "");
+		mRefreshTime = mySharedPreferences.getInt("daydream_refresh_time", 30);
+		mKeepUnread = mySharedPreferences.getBoolean("keep_unread", true);
+		mKeepPosition = mySharedPreferences.getBoolean("keep_position", true);
 
 	}
 
