@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+            android:title="Search">
+
+        <EditTextPreference
+                android:key="daydream_twitter_search"
+                android:title="Search"
+                android:summary="Enter the search words you want to display" 
+                android:dialogTitle="Search"
+                android:defaultValue="#taug"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+            android:title="Performances">
+
+        <EditTextPreference
+                android:key="daydream_refresh_time"
+                android:title="Refresh time"
+                android:summary="Refresh time in seconds" 
+                android:dialogTitle="Refresh time"
+                android:defaultValue="30"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

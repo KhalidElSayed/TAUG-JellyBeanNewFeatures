@@ -31,5 +31,6 @@
     <string name="picture_received">You received a picture</string>
     <string name="custom_notification">Custom notification</string>
     <string name="share">Share</string>
+    <string name="dream_name">TAUG DayDream</string>
 
 </resources>

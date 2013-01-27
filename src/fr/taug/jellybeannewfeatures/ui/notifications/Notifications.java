@@ -84,7 +84,7 @@ public class Notifications {
 
 	public static void generateCustomNotification(Context context) {
 
-		RemoteViews smallRView = new RemoteViews(context.getPackageName(), R.layout.first_layout_widget);
+		RemoteViews smallRView = getSmallRView(context);
 		RemoteViews bigRView = new RemoteViews(context.getPackageName(), R.layout.second_layout_widget);
 
 		Bitmap iconBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.user);
@@ -92,7 +92,6 @@ public class Notifications {
 				.setLargeIcon(iconBitmap)
 				.setSmallIcon(R.drawable.gdg)
 				.setContent(smallRView)
-				.setContentText(context.getString(R.string.picture_received))
 				.setTicker(context.getString(R.string.big_picture_notification))
 				.addAction(R.drawable.ic_menu_share_holo_dark, context.getString(R.string.share),
 						getSharePendingIntent(context));
@@ -104,6 +103,15 @@ public class Notifications {
 		notification.bigContentView = bigRView;
 
 		mNotificationManager.notify(NOTIFICATION_FIRST_STACK_ID, notification);
+	}
+
+	private static RemoteViews getSmallRView(Context context) {
+		RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.custom_notification_small);
+		rv.setTextViewText(R.id.title, "Custom view title");
+		rv.setTextViewText(R.id.text2, "Custom view description");
+		rv.setImageViewBitmap(R.id.icon, BitmapFactory.decodeResource(context.getResources(), R.drawable.gdg));
+		rv.setImageViewBitmap(R.id.icon2, BitmapFactory.decodeResource(context.getResources(), R.drawable.user));
+		return rv;
 	}
 
 	/**

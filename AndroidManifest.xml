@@ -7,6 +7,8 @@
     <uses-sdk
         android:minSdkVersion="16"
         android:targetSdkVersion="16" />
+    
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -73,6 +75,25 @@
         <service
             android:name="fr.taug.jellybeannewfeatures.ui.widgets.ListWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
+        
+        
+        <service
+			android:name="fr.taug.jellybeannewfeatures.ui.daydream.TAUGDayDream"
+			android:label="@string/dream_name"
+			android:exported="true"
+			android:icon="@drawable/taug">
+			<intent-filter>
+				<action android:name="android.service.dreams.DreamService" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+			<meta-data
+				android:name="android.service.dream"
+				android:resource="@xml/taug_dream" />
+		</service>
+		<activity
+			android:name="fr.taug.jellybeannewfeatures.ui.activities.TAUGDayDreamConfigActivity"
+			android:label="@string/dream_name">
+		</activity>
     </application>
 
 </manifest>
