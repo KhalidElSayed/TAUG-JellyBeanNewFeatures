@@ -2,33 +2,33 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:picker="http://schemas.android.com/apk/res-auto/" >
 
-    <PreferenceCategory android:title="Search" >
+    <PreferenceCategory android:title="@string/twitter" >
         <EditTextPreference
             android:defaultValue="#taug"
-            android:dialogTitle="Search"
+            android:dialogTitle="@string/search"
             android:key="daydream_twitter_search"
-            android:summary="Enter the search words you want to display"
-            android:title="Search" />
-    </PreferenceCategory>
-    <PreferenceCategory android:title="Performances" >
+            android:summary="@string/search_summary"
+            android:title="@string/search" />
         <fr.taug.jellybeannewfeatures.ui.preferences.NumberPickerPreference
-            android:dialogTitle="Refresh time"
+            android:dialogTitle="@string/refresh_time"
             android:key="daydream_refresh_time"
-            android:summary="Refresh time in seconds"
-            android:title="Refresh time" 
+            android:summary="@string/refresh_time_summary"
+            android:title="@string/refresh_time" 
             picker:startRange="15"
             picker:endRange="60"
             />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/behavior" >
         <SwitchPreference
             android:defaultValue="true"
             android:key="keep_unread"
-            android:title="Keep unread"
-            android:summary="Keep unread until I completed an action"/>
+            android:title="@string/keep_unread"
+            android:summary="@string/keep_unread_summary"/>
         <SwitchPreference
             android:defaultValue="true"
             android:key="keep_position"
-            android:title="Keep position"
-            android:summary="Keep position unchanged"/>
+            android:title="@string/keep_position"
+            android:summary="@string/keep_position_summary"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

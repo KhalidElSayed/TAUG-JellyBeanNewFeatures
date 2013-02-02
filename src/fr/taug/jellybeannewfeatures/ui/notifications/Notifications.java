@@ -7,8 +7,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.widget.RemoteViews;
 import fr.taug.jellybeannewfeatures.R;
 import fr.taug.jellybeannewfeatures.ui.activities.MainActivity;
@@ -37,19 +41,26 @@ public class Notifications {
 	}
 
 	public static void generateInboxNotification(Context context) {
-		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context).setSmallIcon(R.drawable.gdg)
+		String[] events = context.getResources().getStringArray(R.array.long_list);
+
+		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
 				.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.gdg))
-				.setContentTitle(context.getString(R.string.inbox_notification))
+				.setSmallIcon(R.drawable.gdg).setContentTitle(context.getString(R.string.inbox_notification))
 				.setContentText(context.getString(R.string.events_received))
-				.setTicker(context.getString(R.string.inbox_notification));
+				.setContentTitle(context.getString(R.string.events_received))
+				.setTicker(context.getString(R.string.inbox_notification))
+				.setContentInfo(String.valueOf(events.length)).setContentIntent(getPendingIntent(context));
 
 		NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
-		String[] events = context.getResources().getStringArray(R.array.long_list);
 		inboxStyle.setBigContentTitle(context.getString(R.string.event_tracker_details));
+		inboxStyle.setSummaryText(context.getResources().getString(R.string.app_name));
 		int nbMessages = 0;
+		ForegroundColorSpan fcs = new ForegroundColorSpan(Color.rgb(255, 255, 255));
 		for (int i = 0; i < events.length; i++) {
 
-			inboxStyle.addLine(events[i]);
+			SpannableStringBuilder builder = new SpannableStringBuilder(events[i]);
+			builder.setSpan(fcs, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			inboxStyle.addLine(builder);
 			nbMessages++;
 		}
 

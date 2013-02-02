@@ -1,16 +1,12 @@
 package fr.taug.jellybeannewfeatures.ui.daydream;
 
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.text.format.DateFormat;
-import android.text.util.Linkify;
-import android.text.util.Linkify.TransformFilter;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -54,20 +50,22 @@ public class TweetAdapter extends ArrayAdapter<Tweet> {
 		holder.user.setText("@" + tweet.getUser());
 		holder.userName.setText(tweet.getUserName());
 		holder.message.setText(tweet.getMessage());
-		Linkify.addLinks(holder.message, Linkify.ALL);
-
-		TransformFilter profileTransformFilter = new TransformFilter() {
-			@Override
-			public String transformUrl(Matcher match, String url) {
-				return url.substring(1); // remove the $ sign
-			}
-		};
-
-		Pattern patternProfile = Pattern.compile("\\@[a-zA-Z0-9]+");
-		Linkify.addLinks(holder.message, patternProfile, "http://twitter.com/", null, profileTransformFilter);
-
-		Pattern patternHTag = Pattern.compile("\\#[a-zA-Z0-9]+");
-		Linkify.addLinks(holder.message, patternHTag, "https://twitter.com/search/realtime?q=%23");
+		// Linkify.addLinks(holder.message, Linkify.ALL);
+		//
+		// TransformFilter profileTransformFilter = new TransformFilter() {
+		// @Override
+		// public String transformUrl(Matcher match, String url) {
+		// return url.substring(1); // remove the $ sign
+		// }
+		// };
+		//
+		// Pattern patternProfile = Pattern.compile("\\@[a-zA-Z0-9]+");
+		// Linkify.addLinks(holder.message, patternProfile,
+		// "http://twitter.com/", null, profileTransformFilter);
+		//
+		// Pattern patternHTag = Pattern.compile("\\#[a-zA-Z0-9]+");
+		// Linkify.addLinks(holder.message, patternHTag,
+		// "https://twitter.com/search/realtime?q=%23");
 
 		holder.dateTweet.setText(DateFormat.format("dd/MM/yyyy hh:mm:ss", tweet.getDate()));
 		if (tweet.getProfileImageB() != null) {

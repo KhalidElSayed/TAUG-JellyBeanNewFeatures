@@ -32,5 +32,15 @@
     <string name="custom_notification">Custom notification</string>
     <string name="share">Share</string>
     <string name="dream_name">TAUG DayDream</string>
+    <string name="twitter">Twitter</string>
+    <string name="refresh_time">Refresh time</string>
+    <string name="refresh_time_summary">Refresh time in seconds"</string>
+    <string name="search">Search</string>
+    <string name="search_summary">Enter the search words you want to display</string>
+    <string name="behavior">Behavior</string>
+    <string name="keep_unread">Keep unread</string>
+    <string name="keep_unread_summary">Keep unread until I completed an action</string>
+    <string name="keep_position">Keep position</string>
+    <string name="keep_position_summary">Keep position unchanged</string>
 
 </resources>
