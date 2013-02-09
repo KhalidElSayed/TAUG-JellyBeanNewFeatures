@@ -12,7 +12,7 @@
             style="@style/Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Clear notifications" />
+            android:text="@string/clear_notifications" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,26 +24,28 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="All" />
+                android:text="@string/all" />
 
             <Button
                 android:id="@+id/clear_first"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="First stack" />
+                android:text="@string/first_stack" />
+
             <Button
                 android:id="@+id/clear_second"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="Second stack" />
+                android:text="@string/second_stack" />
         </LinearLayout>
+
         <TextView
             style="@style/Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Simple notifications" />
+            android:text="@string/simple_notifications" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -73,8 +75,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" 
-            android:layout_margin="5dp">
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp" >
 
             <Button
                 android:id="@+id/inbox_notification"
@@ -89,6 +91,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/big_picture" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp" >
 
             <Button
                 android:id="@+id/custom_notification"

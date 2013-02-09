@@ -17,4 +17,37 @@
     <string name="main_activity_title">TAUG - Nouveautés de JB</string>
     <string name="followme">Suivez moi</string>
 
+    <string name="about_main">Cette application a été développée par Nicolas POMEPUY pour le Toulouse Android User Group (TAUG).</string>
+    <string name="simple">Simple</string>
+    <string name="second_stack">Deuxième pile</string>
+    <string name="inbox">Inbox</string>
+    <string name="big_picture">Big picture</string>
+    <string name="taug">TAUG</string>
+    <string name="simple_notification">Une notification simple</string>
+    <string name="simple_notification_description">Ceci est une simple notification!</string>
+    <string name="inbox_notification">Inbox notification</string>
+    <string name="events_received">Evènements reçus</string>
+    <string name="event_tracker_details">Détails des évènements :</string>
+    <string name="big_picture_notification">Notification Big picture</string>
+    <string name="picture_received">Vous avez reçu une image</string>
+    <string name="custom_notification">Notification personnalisée</string>
+    <string name="share">Partager</string>
+    <string name="dream_name">TAUG DayDream</string>
+    <string name="twitter">Twitter</string>
+    <string name="refresh_time">Délai de raffraîchisement</string>
+    <string name="refresh_time_summary">Délai de raffraîchisement</string>
+    <string name="search">Recherche</string>
+    <string name="search_summary">Entrez les termes qui seront affichés</string>
+    <string name="behavior">Comportement</string>
+    <string name="keep_unread">Garder non lu</string>
+    <string name="keep_unread_summary">Garder comme non lu jusqu\'à ce qu\'une action soit effectuée</string>
+    <string name="keep_position">Garder la position</string>
+    <string name="keep_position_summary">Garder la position inchangée</string>
+    <string name="daydream_fragment_text">Pour activer Daydream, aller dans les paramètres du téléphone ▶ affichage ▶ Ecran de veille et choisir TAUG DayDream.</string>
+    <string name="clear_notifications">Vider les notifications</string>
+    <string name="all">Tous</string>
+    <string name="first_stack">Première pile</string>
+    <string name="simple_notifications">Notifications simples</string>
+        <string name="display_settings">Paramètres d\'affichage</string>
+    
 </resources>

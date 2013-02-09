@@ -23,6 +23,13 @@ public class Notifications {
 	private static final int NOTIFICATION_SECOND_STACK_ID = 0;
 	public static final String TAB = "TabToGo";
 
+	/**
+	 * Create the simple notification.
+	 * 
+	 * @param context
+	 * @param secondStack
+	 *            use the second notification stack ?
+	 */
 	public static void generateSimpleNotification(Context context, boolean secondStack) {
 		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context).setSmallIcon(R.drawable.gdg)
 				.setContentTitle(context.getString(R.string.simple_notification))
@@ -40,7 +47,13 @@ public class Notifications {
 		}
 	}
 
+	/**
+	 * Create the inbow style notification
+	 * 
+	 * @param context
+	 */
 	public static void generateInboxNotification(Context context) {
+		// Get the lines
 		String[] events = context.getResources().getStringArray(R.array.long_list);
 
 		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
@@ -51,13 +64,17 @@ public class Notifications {
 				.setTicker(context.getString(R.string.inbox_notification))
 				.setContentInfo(String.valueOf(events.length)).setContentIntent(getPendingIntent(context));
 
+		// Notification is now an inbox one
 		NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
 		inboxStyle.setBigContentTitle(context.getString(R.string.event_tracker_details));
 		inboxStyle.setSummaryText(context.getResources().getString(R.string.app_name));
+
+		// Add the lines
 		int nbMessages = 0;
 		ForegroundColorSpan fcs = new ForegroundColorSpan(Color.rgb(255, 255, 255));
 		for (int i = 0; i < events.length; i++) {
 
+			// Color the first letter of the lines
 			SpannableStringBuilder builder = new SpannableStringBuilder(events[i]);
 			builder.setSpan(fcs, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 			inboxStyle.addLine(builder);
@@ -72,6 +89,11 @@ public class Notifications {
 		mNotificationManager.notify(NOTIFICATION_FIRST_STACK_ID, mBuilder.build());
 	}
 
+	/**
+	 * Create the big picture notification
+	 * 
+	 * @param context
+	 */
 	public static void generateBigPictureNotification(Context context) {
 		Bitmap iconBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.user);
 		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
@@ -93,10 +115,17 @@ public class Notifications {
 		mNotificationManager.notify(NOTIFICATION_FIRST_STACK_ID, mBuilder.build());
 	}
 
+	/**
+	 * Create the notification using remoteviews
+	 * 
+	 * @param context
+	 */
 	public static void generateCustomNotification(Context context) {
 
+		// Remote view used for the folded part
 		RemoteViews smallRView = getSmallRView(context);
-		RemoteViews bigRView = new RemoteViews(context.getPackageName(), R.layout.second_layout_widget);
+		// Remote view used for the unfolded part
+		RemoteViews bigRView = new RemoteViews(context.getPackageName(), R.layout.first_layout_widget);
 
 		Bitmap iconBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.user);
 		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
@@ -116,6 +145,12 @@ public class Notifications {
 		mNotificationManager.notify(NOTIFICATION_FIRST_STACK_ID, notification);
 	}
 
+	/**
+	 * Create small RemovteView
+	 * 
+	 * @param context
+	 * @return the remoteview
+	 */
 	private static RemoteViews getSmallRView(Context context) {
 		RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.custom_notification_small);
 		rv.setTextViewText(R.id.title, "Custom view title");

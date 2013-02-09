@@ -15,8 +15,8 @@
     <string name="widgets_fragment_text">The widgets should be accessible in your lockscreen.\nIf you don\'t have JB 4.2 you could add it to your home.\n\nAvailable widgets: \n ▶TAUG - Expandable widget\n ▶TAUG - Cut widget\n ▶TAUG - Two layouts widget</string>
     <string name="menu_about">About</string>
     <string name="main_activity_title">TAUG - JB New features</string>
-    <string name="about_main">This application has been developed by Nicolas POMEPUY for the Toulouse Android User Group (TAUG).</string>
     <string name="followme">Follow me</string>
+    <string name="about_main">This application has been developed by Nicolas POMEPUY for the Toulouse Android User Group (TAUG).</string>
     <string name="simple">Simple</string>
     <string name="second_stack">Second stack</string>
     <string name="inbox">Inbox</string>
@@ -42,5 +42,11 @@
     <string name="keep_unread_summary">Keep unread until I completed an action</string>
     <string name="keep_position">Keep position</string>
     <string name="keep_position_summary">Keep position unchanged</string>
+    <string name="daydream_fragment_text">To enable daydream, go in your phone\'s settings ▶ display ▶ Daydream and choose TAUG DayDream.</string>
+    <string name="clear_notifications">Clear notifications</string>
+    <string name="all">All</string>
+    <string name="first_stack">First stack</string>
+    <string name="simple_notifications">Simple notifications</string>
+    <string name="display_settings">Display settings</string>
 
 </resources>

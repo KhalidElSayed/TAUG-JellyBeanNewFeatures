@@ -67,7 +67,9 @@ public class TweetAdapter extends ArrayAdapter<Tweet> {
 		// Linkify.addLinks(holder.message, patternHTag,
 		// "https://twitter.com/search/realtime?q=%23");
 
-		holder.dateTweet.setText(DateFormat.format("dd/MM/yyyy hh:mm:ss", tweet.getDate()));
+		if (tweet.getDate() != null) {
+			holder.dateTweet.setText(DateFormat.format("dd/MM/yyyy hh:mm:ss", tweet.getDate()));
+		}
 		if (tweet.getProfileImageB() != null) {
 			holder.profileImage.setImageBitmap(tweet.getProfileImageB());
 		} else {
