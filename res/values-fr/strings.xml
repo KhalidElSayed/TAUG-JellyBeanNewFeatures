@@ -21,7 +21,6 @@
     <string name="simple">Simple</string>
     <string name="second_stack">Deuxième pile</string>
     <string name="inbox">Inbox</string>
-    <string name="big_picture">Big picture</string>
     <string name="taug">TAUG</string>
     <string name="simple_notification">Une notification simple</string>
     <string name="simple_notification_description">Ceci est une simple notification!</string>
@@ -49,5 +48,11 @@
     <string name="first_stack">Première pile</string>
     <string name="simple_notifications">Notifications simples</string>
         <string name="display_settings">Paramètres d\'affichage</string>
-    
+    <string name="battery_settings">Paramètres de batterie</string>
+    <string name="night_mode">Mode nuit</string>
+    <string name="night_mode_summary">Bascule la luminosité au minimum pour diminuer la consommation.</string>
+    <string name="show_battery">Afficher la batterie</string>
+    <string name="show_battery_summary">Afficher le niveau de batterie en permanence.</string>
+    <string name="show_hour">Afficher l\'heure</string>
+    <string name="show_hour_summary">Afficher l\'heure en permanence.</string>
 </resources>

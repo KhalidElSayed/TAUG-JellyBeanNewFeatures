@@ -1,13 +1,20 @@
 package fr.taug.jellybeannewfeatures.ui.daydream;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import android.annotation.TargetApi;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.service.dreams.DreamService;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -29,6 +36,8 @@ public class TAUGDayDream extends DreamService {
 	private static TextView newTweetsTV;
 	private static ProgressBar progressBar;
 	private static int lastTweetId = 0;
+	private static final String PATTERN_12_HOURS = DateFormat.HOUR + ":" + DateFormat.MINUTE + DateFormat.MINUTE;
+	private static final String PATTERN_24_HOURS = DateFormat.HOUR_OF_DAY + ":" + DateFormat.MINUTE + DateFormat.MINUTE;
 
 	private static TwitterApi.IOnGetTweetsListener tweetsListener = new IOnGetTweetsListener() {
 
@@ -96,6 +105,13 @@ public class TAUGDayDream extends DreamService {
 	};
 	private String mTwitterSearch;
 	private int mRefreshTime;
+	private boolean mNightMode;
+	private boolean mShowBattery;
+	private TextView battery;
+	private BroadcastReceiver batteryReceiver;
+	private BroadcastReceiver hourReceiver;
+	private boolean mShowHour;
+	private TextView hour;
 	private static boolean mKeepPosition;
 	private static boolean mFirstKeepPosition = true;
 	private static boolean mKeepUnread;
@@ -109,11 +125,85 @@ public class TAUGDayDream extends DreamService {
 
 		loadPref();
 
+		setScreenBright(!mNightMode);
+
 		setContentView(R.layout.taug_dream);
 		progressBar = (ProgressBar) findViewById(R.id.progress_bar);
 		newTweetsTV = (TextView) findViewById(R.id.nb_new_tweets);
 		listView = (ListView) findViewById(R.id.tweet_list_view);
 		refreshButton = (ImageView) findViewById(R.id.refresh);
+
+		if (mShowBattery) {
+
+			battery = (TextView) findViewById(R.id.battery);
+
+			battery.setVisibility(View.VISIBLE);
+
+			batteryReceiver = new BroadcastReceiver() {
+
+				@Override
+				public void onReceive(Context context, Intent intent) {
+					int batteryLevel = getBatteryLevel(context);
+					battery.setText(batteryLevel + "%");
+
+					if (batteryLevel < 5) {
+						battery.setCompoundDrawablesRelativeWithIntrinsicBounds(
+								context.getResources().getDrawable(R.drawable.battery_0), null, null, null);
+					} else if (batteryLevel < 15) {
+						battery.setCompoundDrawablesRelativeWithIntrinsicBounds(
+								context.getResources().getDrawable(R.drawable.battery_10), null, null, null);
+					} else if (batteryLevel < 25) {
+						battery.setCompoundDrawablesRelativeWithIntrinsicBounds(
+								context.getResources().getDrawable(R.drawable.battery_20), null, null, null);
+					} else if (batteryLevel < 35) {
+						battery.setCompoundDrawablesRelativeWithIntrinsicBounds(
+								context.getResources().getDrawable(R.drawable.battery_30), null, null, null);
+					} else if (batteryLevel < 45) {
+						battery.setCompoundDrawablesRelativeWithIntrinsicBounds(
+								context.getResources().getDrawable(R.drawable.battery_40), null, null, null);
+					} else if (batteryLevel < 55) {
+						battery.setCompoundDrawablesRelativeWithIntrinsicBounds(
+								context.getResources().getDrawable(R.drawable.battery_50), null, null, null);
+					} else if (batteryLevel < 65) {
+						battery.setCompoundDrawablesRelativeWithIntrinsicBounds(
+								context.getResources().getDrawable(R.drawable.battery_60), null, null, null);
+					} else if (batteryLevel < 75) {
+						battery.setCompoundDrawablesRelativeWithIntrinsicBounds(
+								context.getResources().getDrawable(R.drawable.battery_70), null, null, null);
+					} else if (batteryLevel < 85) {
+						battery.setCompoundDrawablesRelativeWithIntrinsicBounds(
+								context.getResources().getDrawable(R.drawable.battery_80), null, null, null);
+					} else if (batteryLevel < 95) {
+						battery.setCompoundDrawablesRelativeWithIntrinsicBounds(
+								context.getResources().getDrawable(R.drawable.battery_90), null, null, null);
+					} else {
+						battery.setCompoundDrawablesRelativeWithIntrinsicBounds(
+								context.getResources().getDrawable(R.drawable.battery_100), null, null, null);
+					}
+
+				}
+			};
+			registerReceiver(batteryReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+		}
+		if (mShowHour) {
+
+			hour = (TextView) findViewById(R.id.hour);
+
+			hour.setVisibility(View.VISIBLE);
+
+			setHourText(this);
+
+			hourReceiver = new BroadcastReceiver() {
+
+				@Override
+				public void onReceive(Context context, Intent intent) {
+					setHourText(context);
+
+				}
+
+			};
+			registerReceiver(hourReceiver, new IntentFilter(Intent.ACTION_TIME_TICK));
+		}
 
 		if (mKeepUnread) {
 			listView.setOnScrollListener(new OnScrollListener() {
@@ -164,9 +254,19 @@ public class TAUGDayDream extends DreamService {
 		retrieveTweets();
 	}
 
+	private void setHourText(Context context) {
+		String patern = PATTERN_12_HOURS;
+		if (DateFormat.is24HourFormat(context)) {
+			patern = PATTERN_24_HOURS;
+		}
+		hour.setText(DateFormat.format(patern, Calendar.getInstance(Locale.getDefault())));
+	}
+
 	@Override
 	public void onDestroy() {
 		mRefreshHandler.removeCallbacks(mRefreshTask);
+		unregisterReceiver(batteryReceiver);
+		unregisterReceiver(hourReceiver);
 		super.onDestroy();
 	}
 
@@ -199,6 +299,41 @@ public class TAUGDayDream extends DreamService {
 		mRefreshTime = mySharedPreferences.getInt("daydream_refresh_time", 30);
 		mKeepUnread = mySharedPreferences.getBoolean("keep_unread", true);
 		mKeepPosition = mySharedPreferences.getBoolean("keep_position", true);
+		mNightMode = mySharedPreferences.getBoolean("night_mode", true);
+		mShowBattery = mySharedPreferences.getBoolean("show_battery", true);
+		mShowHour = mySharedPreferences.getBoolean("show_hour", true);
+
+	}
+
+	/**
+	 * Give the battery level
+	 * 
+	 * @param context
+	 * @return
+	 */
+	public int getBatteryLevel(Context context) {
+
+		// get battery level
+		Intent batteryIntent;
+		try {
+			batteryIntent = context.getApplicationContext().registerReceiver(null,
+					new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+			batteryIntent.setPackage(context.getPackageName());
+
+			int level = -1;
+			if (batteryIntent != null) {
+				int rawlevel = batteryIntent.getIntExtra("level", -1);
+				int scale = batteryIntent.getIntExtra("scale", -1);
+				if (rawlevel >= 0 && scale > 0) {
+					level = (rawlevel * 100) / scale;
+
+				}
+			}
+			return level;
+		} catch (Exception ex) {
+			// can't register service
+			return 0;
+		}
 
 	}
 

@@ -30,5 +30,22 @@
             android:title="@string/keep_position"
             android:summary="@string/keep_position_summary"/>
     </PreferenceCategory>
+    <PreferenceCategory android:title="@string/battery_settings" >
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="night_mode"
+            android:title="@string/night_mode"
+            android:summary="@string/night_mode_summary"/>
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="show_battery"
+            android:title="@string/show_battery"
+            android:summary="@string/show_battery_summary"/>
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="show_hour"
+            android:title="@string/show_hour"
+            android:summary="@string/show_hour_summary"/>
+    </PreferenceCategory>
 
 </PreferenceScreen>

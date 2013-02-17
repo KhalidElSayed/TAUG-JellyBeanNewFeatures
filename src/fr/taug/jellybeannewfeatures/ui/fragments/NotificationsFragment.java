@@ -55,6 +55,15 @@ public class NotificationsFragment extends Fragment {
 
 			}
 		});
+		Button bigTextNotificationButton = (Button) view.findViewById(R.id.big_text_notification);
+		bigTextNotificationButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				Notifications.generateBigTextNotification(getActivity());
+
+			}
+		});
 		Button customNotificationButton = (Button) view.findViewById(R.id.custom_notification);
 		customNotificationButton.setOnClickListener(new OnClickListener() {
 

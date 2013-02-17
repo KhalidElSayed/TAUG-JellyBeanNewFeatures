@@ -5,4 +5,6 @@
 	<!-- #################### -->
 	<dimen name="width4">260dp</dimen>
 	<dimen name="height4">260dp</dimen>
+	<dimen name="dream_margin">10dp</dimen>
+	<dimen name="dream_margin_top">10dp</dimen>
 </resources>

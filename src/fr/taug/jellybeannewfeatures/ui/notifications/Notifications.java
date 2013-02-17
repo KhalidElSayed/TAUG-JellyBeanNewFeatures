@@ -75,9 +75,9 @@ public class Notifications {
 		for (int i = 0; i < events.length; i++) {
 
 			// Color the first letter of the lines
-			SpannableStringBuilder builder = new SpannableStringBuilder(events[i]);
-			builder.setSpan(fcs, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-			inboxStyle.addLine(builder);
+			SpannableStringBuilder lineContent = new SpannableStringBuilder(events[i]);
+			lineContent.setSpan(fcs, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			inboxStyle.addLine(lineContent);
 			nbMessages++;
 		}
 
@@ -110,6 +110,27 @@ public class Notifications {
 		bigPictureStyle.bigPicture(iconBitmap);
 
 		mBuilder.setStyle(bigPictureStyle);
+		NotificationManager mNotificationManager = (NotificationManager) context
+				.getSystemService(Context.NOTIFICATION_SERVICE);
+		mNotificationManager.notify(NOTIFICATION_FIRST_STACK_ID, mBuilder.build());
+	}
+
+	/**
+	 * Create the big text notification
+	 * 
+	 * @param context
+	 */
+	public static void generateBigTextNotification(Context context) {
+		Bitmap iconBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.user);
+		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context).setLargeIcon(iconBitmap)
+				.setSmallIcon(R.drawable.gdg).setContentTitle(context.getString(R.string.big_text))
+				.setContentText(context.getString(R.string.big_text)).setTicker(context.getString(R.string.big_text));
+
+		NotificationCompat.BigTextStyle bigTextStyle = new NotificationCompat.BigTextStyle();
+		bigTextStyle.setBigContentTitle(context.getString(R.string.big_text));
+		bigTextStyle.bigText(context.getString(R.string.long_text));
+
+		mBuilder.setStyle(bigTextStyle);
 		NotificationManager mNotificationManager = (NotificationManager) context
 				.getSystemService(Context.NOTIFICATION_SERVICE);
 		mNotificationManager.notify(NOTIFICATION_FIRST_STACK_ID, mBuilder.build());

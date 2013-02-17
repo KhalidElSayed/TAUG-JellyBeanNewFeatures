@@ -21,6 +21,7 @@
     <string name="second_stack">Second stack</string>
     <string name="inbox">Inbox</string>
     <string name="big_picture">Big picture</string>
+    <string name="big_text">Big text</string>
     <string name="taug">TAUG</string>
     <string name="simple_notification">A simple notification</string>
     <string name="simple_notification_description">This is a simple notification!</string>
@@ -48,5 +49,12 @@
     <string name="first_stack">First stack</string>
     <string name="simple_notifications">Simple notifications</string>
     <string name="display_settings">Display settings</string>
-
+    <string name="long_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac mattis nisi. Phasellus et euismod ipsum. Duis sed nisl massa. Vestibulum consequat neque ac nulla semper porta. Maecenas fermentum pharetra lorem vitae ullamcorper. Aenean ipsum eros, ornare at aliquam nec, viverra in elit. In hac habitasse platea dictumst. Etiam mauris est, ullamcorper eget condimentum in, porta in turpis. Vivamus hendrerit feugiat aliquet. Aenean urna turpis, rutrum in viverra quis, tristique vitae augue. Pellentesque sagittis fringilla nisi at lobortis.</string>
+    <string name="battery_settings">Battery settings</string>
+    <string name="night_mode">Night mode</string>
+    <string name="night_mode_summary">Set the brightness to the minimum to avoid battery use.</string>
+    <string name="show_battery">Show battery</string>
+    <string name="show_battery_summary">Always show the battery level.</string>
+    <string name="show_hour">Show hour</string>
+    <string name="show_hour_summary">Always show the hour.</string>
 </resources>

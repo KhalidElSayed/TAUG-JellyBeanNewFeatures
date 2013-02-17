@@ -91,6 +91,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/big_picture" />
+            <Button
+                android:id="@+id/big_text_notification"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/big_text" />
         </LinearLayout>
 
         <LinearLayout
