@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:picker="http://schemas.android.com/apk/res-auto/" >
+
+    
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="keep_unread"
+            android:title="@string/keep_unread"
+            android:summary="@string/keep_unread_summary"/>
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="keep_position"
+            android:title="@string/keep_position"
+            android:summary="@string/keep_position_summary"/>
+   
+
+</PreferenceScreen>

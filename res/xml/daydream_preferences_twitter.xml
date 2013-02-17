@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:picker="http://schemas.android.com/apk/res-auto/" >
+
+        <EditTextPreference
+            android:defaultValue="#taug"
+            android:dialogTitle="@string/search"
+            android:key="daydream_twitter_search"
+            android:summary="@string/search_summary"
+            android:title="@string/search" />
+        <fr.taug.jellybeannewfeatures.ui.preferences.NumberPickerPreference
+            android:dialogTitle="@string/refresh_time"
+            android:key="daydream_refresh_time"
+            android:summary="@string/refresh_time_summary"
+            android:title="@string/refresh_time" 
+            picker:startRange="15"
+            picker:endRange="60"
+            />
+   
+
+</PreferenceScreen>

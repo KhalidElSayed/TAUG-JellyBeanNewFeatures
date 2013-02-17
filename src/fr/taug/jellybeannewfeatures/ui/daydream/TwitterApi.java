@@ -98,7 +98,7 @@ public class TwitterApi {
 	public static Date getTwitterDate(String date) throws ParseException {
 
 		final String TWITTER = "EEE, dd MMM yyy HH:mm:ss ZZZZZ";
-		SimpleDateFormat sf = new SimpleDateFormat(TWITTER, Locale.getDefault());
+		SimpleDateFormat sf = new SimpleDateFormat(TWITTER, Locale.ENGLISH);
 		// Thu Dec 3 18:26:07 +0000 2010
 		// Thu, 06 Oct 2011 19:36:17 +0000
 		sf.setLenient(true);
