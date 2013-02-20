@@ -6,11 +6,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.util.Linkify;
 import android.util.AttributeSet;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.TextView;
 import fr.taug.jellybeannewfeatures.R;
 
 public class AboutActivity extends Activity {
@@ -26,6 +28,10 @@ public class AboutActivity extends Activity {
 		final ActionBar actionBar = getActionBar();
 		actionBar.setTitle(getString(R.string.menu_about));
 		actionBar.setDisplayHomeAsUpEnabled(true);
+
+		TextView openSource = (TextView) findViewById(R.id.open_source_project);
+		Linkify.addLinks(openSource, Linkify.ALL);
+
 		ImageView taugGPlus = (ImageView) findViewById(R.id.taug_gplus);
 		ImageView taugTwitter = (ImageView) findViewById(R.id.taug_twitter);
 		ImageView taugFacebook = (ImageView) findViewById(R.id.taug_facebook);

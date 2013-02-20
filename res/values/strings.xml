@@ -57,4 +57,5 @@
     <string name="show_battery_summary">Always show the battery level.</string>
     <string name="show_hour">Show hour</string>
     <string name="show_hour_summary">Always show the hour.</string>
+    <string name="opensource">This application is open source. Find its code here : https://github.com/PomepuyN/TAUG-JellyBeanNewFeatures</string>
 </resources>

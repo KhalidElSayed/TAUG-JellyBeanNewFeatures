@@ -55,4 +55,5 @@
     <string name="show_battery_summary">Afficher le niveau de batterie en permanence.</string>
     <string name="show_hour">Afficher l\'heure</string>
     <string name="show_hour_summary">Afficher l\'heure en permanence.</string>
+    <string name="opensource">Cette application est open source. Son code est disponible ici : https://github.com/PomepuyN/TAUG-JellyBeanNewFeatures</string>
 </resources>
